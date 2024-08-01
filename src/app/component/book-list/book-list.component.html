@@ -1,1 +1,16 @@
-<p>book-list works!</p>
+<select [(ngModel)]="selectedStatus">
+    <option value="">All</option>
+    <option value="available">Available</option>
+    <option value="borrowed">Borrowed</option>
+</select>
+
+<div *ngIf="books.length > 0; else noBooks">
+    <ul>
+        <li *ngFor="let book of books | filterByStatus:selectedStatus">
+            {{ book.title }} by {{ book.author }} - {{ book.status | status }}
+        </li>
+    </ul>
+</div>
+<ng-template #noBooks>
+    <p>Pas de livres dans la liste</p>
+</ng-template>

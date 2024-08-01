@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { BookService, Book } from '../../service/book.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { computeMsgId } from '@angular/compiler';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-add-book',
