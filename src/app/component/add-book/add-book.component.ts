@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddBookComponent {
   newBook: Book = {
+    id: crypto.randomUUID().substring(0, 10),
     title: '',
     author: '',
     description: '',
@@ -39,6 +40,7 @@ export class AddBookComponent {
       next: (book) => {
         console.log('Book added:', book);
         this.newBook = {
+          id: '',
           title: '',
           author: '',
           description: '',
