@@ -4,6 +4,6 @@ import {EditBookComponent} from "./component/edit-book/edit-book.component";
 
 export const routes: Routes = [
   {path:'',component:BookListComponent},
-  // {path:'edit',component:EditBookComponent}
+  {path:'edit/:id',component:EditBookComponent}
 
 ];
