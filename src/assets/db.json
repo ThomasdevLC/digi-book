@@ -3,9 +3,9 @@
     {
       "id": "1",
       "title": "To Kill a Mockingbird!",
-      "author": "Harper Lee",
+      "author": "Harper Leee",
       "description": "A novel about the serious issues of rape and racial inequality.",
-      "status": "borrowed"
+      "status": "available"
     },
     {
       "id": "2",
@@ -62,27 +62,14 @@
       "author": "Aldous Huxley",
       "description": "A dystopian social science fiction novel and cautionary tale.",
       "status": "borrowed"
-    },
+    }
+  ],
+  "users": [
     {
-      "id": "",
-      "title": "fzefezezf",
-      "author": "fezfezfezz",
-      "description": "fezfezfzf",
-      "status": "available"
-    },
-    {
-      "id": "30f38088-f9be-4b30-9f2a-89bf0955d8b4",
-      "title": "fzefezz",
-      "author": "ezfezfezf",
-      "description": "efzfezfez",
-      "status": "available"
-    },
-    {
-      "id": "af4ee609-ffdc-4127-ae9f-0333ab9ed443",
-      "title": "fffff",
-      "author": "ffffff",
-      "description": "ffffff",
-      "status": "available"
+      "id": "7823ed54",
+      "username": "antoine",
+      "email": "a@a.com",
+      "password": "123"
     }
   ]
 }
