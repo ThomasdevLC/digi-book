@@ -19,8 +19,7 @@ export class BookService {
   /** The subject that emits the books */
   private booksSubject = new BehaviorSubject<Book[]>([]);
 
-  /** The constructor */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getBookById(id:string):Observable<Book>{
     return this.http.get<Book>(`${this.apiURL}/${id}`);
@@ -34,4 +33,20 @@ export class BookService {
     );
   }
 
+  addBook(newBook: Book): Observable<Book> {
+    return new Observable<Book>((observer) => {
+      this.http.post<Book>(this.apiURL, newBook).subscribe({
+        next: (book: Book) => {
+          const currentBooks = this.booksSubject.value;
+          this.booksSubject.next([...currentBooks, book]);
+          observer.next(book);
+          observer.complete();
+        },
+        error: (err) => {
+          observer.error(err);
+          observer.complete();
+        },
+      });
+    });
+  }
 }
