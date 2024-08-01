@@ -12,7 +12,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./add-book.component.css'],
 })
 export class AddBookComponent {
+
   newBook: Book = {
+    id: crypto.randomUUID(),
     title: '',
     author: '',
     description: '',
@@ -38,7 +40,9 @@ export class AddBookComponent {
     this.bookService.addBook(this.newBook).subscribe({
       next: (book) => {
         console.log('Book added:', book);
+
         this.newBook = {
+          id: '',
           title: '',
           author: '',
           description: '',
