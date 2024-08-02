@@ -3,9 +3,9 @@
     {
       "id": "1",
       "title": "To Kill a Mockingbird!",
-      "author": "Harper Leee",
+      "author": "Harper Lee",
       "description": "A novel about the serious issues of rape and racial inequality.",
-      "status": "available"
+      "status": "borrowed"
     },
     {
       "id": "2",

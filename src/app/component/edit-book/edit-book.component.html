@@ -2,48 +2,78 @@
   <div class="relative py-3 w-9/12 max-w-lg mx-auto">
     <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
       <div class="max-w-md mx-auto">
-        <div class="flex items-center space-x-5">
-          <div class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">i</div>
+        <div class="flex items-center place-content-around space-x-5">
+          <div
+            class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">
+            i
+          </div>
           <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
             <h2 class="leading-relaxed">Modifier un livre </h2>
           </div>
+          <button type="button" (click)="onDelete()"
+                  class="text-red-700 focus:outline-none hover:bg-red-700 hover:rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-14 h-12 hover:text-red-50" viewBox="0 0 20 20"
+                 fill="currentColor">
+              <path fill-rule="evenodd"
+                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                    clip-rule="evenodd"/>
+            </svg>
+          </button>
         </div>
         <form (ngSubmit)="onSubmit()">
-        <div class="divide-y divide-gray-200">
-          <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-            <div class="flex flex-col">
-              <label class="leading-loose">Titre</label>
-              <input type="text" [(ngModel)]="book.title" name="title" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" >
-            </div>
-            <div class="flex flex-col">
-              <label class="leading-loose">Auteur</label>
-              <input type="text" [(ngModel)]="book.author" name="author" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" >
-            </div>
-            <div class="flex flex-col">
-              <label class="leading-loose"> Description</label>
-              <textarea [(ngModel)]="book.description" name="description" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" ></textarea>
-            </div>
-            <div class="flex items-center space-x-4">
+          <div class="divide-y divide-gray-200">
+            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
               <div class="flex flex-col">
-                <label id="status" class="leading-loose">Status</label>
-                <div class="relative focus-within:text-gray-600 text-gray-400">
-                  <input type="text" [(ngModel)]="book.status" name="status" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600" >
-                  <div class="absolute left-3 top-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <label class="leading-loose">Titre</label>
+                <input type="text" [(ngModel)]="book.title" name="title"
+                       class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+              </div>
+              <div class="flex flex-col">
+                <label class="leading-loose">Auteur</label>
+                <input type="text" [(ngModel)]="book.author" name="author"
+                       class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+              </div>
+              <div class="flex flex-col">
+                <label class="leading-loose"> Description</label>
+                <textarea [(ngModel)]="book.description" name="description"
+                          class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"></textarea>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div class="flex flex-col">
+                  <label id="status" class="leading-loose">Status</label>
+                  <div class="relative focus-within:text-gray-600 text-gray-400">
+                    <label class="inline-flex items-center">
+                      <input type="radio" [(ngModel)]="book.status" [value]="'available'" name="status"
+                             class="form-radio h-5 w-5 text-gray-600">
+                      <span class="ml-2 text-gray-700">Disponible</span>
+                    </label>
+                    <label class="inline-flex items-center ml-4">
+                      <input type="radio" [(ngModel)]="book.status" [value]="'borrowed'" name="status"
+                             class="form-radio h-5 w-5 text-gray-600">
+                      <span class="ml-2 text-gray-700">Indisponible</span>
+                    </label>
                   </div>
                 </div>
               </div>
             </div>
-
+            <div class="pt-4 flex items-center space-x-4">
+              <button (click)="router.navigate(['/books'])"
+                      class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                     xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                Annuler
+              </button>
+              <button
+                class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">
+                Modifier
+              </button>
+            </div>
           </div>
-          <div class="pt-4 flex items-center space-x-4">
-            <button (click)="router.navigate(['/'])" class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
-              <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Annuler
-            </button>
-            <button class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Modifier</button>
-          </div>
-        </div>
         </form>
+        <app-confirmation-dialog *ngIf="showConfirmation" [message]="confirmationMessage" (confirm)="onConfirm()"
+                                 (cancel)="onCancel()"></app-confirmation-dialog>
       </div>
     </div>
   </div>

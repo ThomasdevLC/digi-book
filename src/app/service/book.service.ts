@@ -19,6 +19,10 @@ export class BookService {
   private booksSubject = new BehaviorSubject<Book[]>([]);
   books$ = this.booksSubject.asObservable();
 
+  /**
+   * Constructor of the service to inject the HTTP client
+   * @param http The HTTP client to make requests
+   */
   constructor(private http: HttpClient) {}
 
   getBooks() {
@@ -28,10 +32,20 @@ export class BookService {
     });
   }
 
+  /**
+   * Get all books from the server
+   * @param id The id of the todo to get
+   * @returns An observable that emits the books
+   */
   getBookById(id: string): Observable<Book> {
     return this.http.get<Book>(`${this.apiURL}/${id}`);
   }
 
+  /**
+   * Get all books from the server
+   * @param book The book to add
+   * @returns An observable that emits the books
+   */
   updateData(book: Book): Observable<void> {
     return this.http.put<void>(`${this.apiURL}/${book.id}`, book).pipe(
       map(() => {
@@ -57,5 +71,20 @@ export class BookService {
         },
       });
     });
+  }
+
+  /**
+   * delete a book from the server
+   * @param id The id of the book to delete
+   * @returns An observable that emits the books
+   */
+  removeBook(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiURL}/${id}`).pipe(
+      map(() => {
+        this.booksSubject.next([
+          ...this.booksSubject.value.filter((b) => b.id !== id),
+        ]);
+      })
+    );
   }
 }
