@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { BookService, Book } from '../../service/book.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { computeMsgId } from '@angular/compiler';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-add-book',
@@ -13,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AddBookComponent {
   newBook: Book = {
+    id: crypto.randomUUID().substring(0, 10),
     title: '',
     author: '',
     description: '',
@@ -38,7 +38,9 @@ export class AddBookComponent {
     this.bookService.addBook(this.newBook).subscribe({
       next: (book) => {
         console.log('Book added:', book);
+
         this.newBook = {
+          id: '',
           title: '',
           author: '',
           description: '',
