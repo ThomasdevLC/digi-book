@@ -2,27 +2,34 @@
 <div class="bg-grey-lighter min-h-screen flex flex-col">
 
   <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-    <form (ngSubmit)="onSubmit(signUpForm)" #signUpForm="ngForm">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
       <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
         <h1 class="mb-8 text-3xl text-center">Inscription</h1>
-        <input [(ngModel)]="username"
+        <input formControlName="username"
                type="text"
                class="block border border-grey-light w-full p-3 rounded mb-4"
                name="username"
                placeholder="Surnom"
                required/>
-
-        <input [(ngModel)]="email"
+        <div *ngIf="signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched" class="text-red-500">
+          Surnom est requis.
+        </div>
+        <input formControlName="email"
                type="email"
                class="block border border-grey-light w-full p-3 rounded mb-4"
                name="email"
                placeholder="Email"/>
-
-        <input [(ngModel)]="password"
+        <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched" class="text-red-500">
+          Veuillez entrer une adresse email valide.
+        </div>
+        <input formControlName="password"
                type="password"
                class="block border border-grey-light w-full p-3 rounded mb-4"
                name="password"
                placeholder="Mot de passe"/>
+        <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched" class="text-red-500">
+          Mot de passe est requis.
+        </div>
         <!--        <input-->
         <!--          type="password"-->
         <!--          class="block border border-grey-light w-full p-3 rounded mb-4"-->

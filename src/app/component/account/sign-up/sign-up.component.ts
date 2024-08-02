@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService, User} from "../../../service/account.service";
 import {Router, RouterLink} from "@angular/router";
-import {FormsModule, NgForm} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 import {ToastrService} from "ngx-toastr";
 import {Subscription} from "rxjs";
@@ -12,37 +12,40 @@ import {Subscription} from "rxjs";
   imports: [
     FormsModule,
     RouterLink,
-    NgIf
+    NgIf,
+    ReactiveFormsModule
   ],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
-export class SignUpComponent{
-  username: string = '';
-  email: string = '';
-  password: string = '';
+export class SignUpComponent implements OnInit{
+  signUpForm!: FormGroup;
   errorMessage: string = '';
-  private userSubscription: Subscription | undefined;
 
-  // @Output() userCreated = new EventEmitter<{email:string,password:string}>();
-  constructor(private accountService:AccountService,private router:Router,private notify:ToastrService) {  }
+  constructor(private fb:FormBuilder, private accountService:AccountService,private router:Router,private notify:ToastrService) {  }
 
+  ngOnInit(): void {
+    this.signUpForm = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
 
-  onSubmit(form: NgForm): void {
-    if (form.valid) {
+  onSubmit(): void {
+    if (this.signUpForm.valid) {
       const newUser: User = {
         id: crypto.randomUUID().substring(0, 8),
-        username: this.username,
-        email: this.email,
-        password: this.password
+        username: this.signUpForm.value.username,
+        email: this.signUpForm.value.email,
+        password: this.signUpForm.value.password
       };
       this.accountService.addUser(newUser).subscribe({
         next: () => {
           this.notify.success('Votre compte est crée', 'Success');
-          // this.userCreated.emit({ email: this.email, password: this.password });
-          this.router.navigate(['/']).then();
+          this.router.navigate(['/login',newUser.id]).then();
         },
-        error: (error) => this.errorMessage = error.message
+        error: (error) => this.notify.error(error, 'Error')
       });
     }
   }

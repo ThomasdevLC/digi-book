@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AccountService} from "../../../service/account.service";
-import {Router, RouterLink} from "@angular/router";
-import {FormsModule, NgForm} from "@angular/forms";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -10,22 +10,31 @@ import {NgIf} from "@angular/common";
   imports: [
     FormsModule,
     NgIf,
-    RouterLink
+    RouterLink,
+    ReactiveFormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
-
   errorMessage: string = '';
 
-  constructor(private accountService: AccountService, private router: Router) {
+  constructor(private accountService: AccountService, private router: Router,private route:ActivatedRoute) {  }
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.accountService.getUserById(id).subscribe(user => {
+        this.email = user.email;
+        this.password = user.password;
+      });
+    }
   }
 
-  onLogin(form: NgForm): void {
-    if (form.valid) {
+  onLogin(): void {
+    if (this.email && this.password) {
       this.accountService.login(this.email, this.password).subscribe({
         next: () => {
           this.router.navigate(['/books']).then();

@@ -11,6 +11,7 @@ import {MyAccountComponent} from "./component/account/my-account/my-account.comp
 export const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
+  {path:'login/:id',component: LoginComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path:'my-account',component:MyAccountComponent,canActivate: [AuthGuard]},
   {path: 'books', component: BookListComponent, canActivate: [AuthGuard]},

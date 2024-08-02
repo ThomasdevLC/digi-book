@@ -24,6 +24,10 @@ export class AccountService {
     }
   }
 
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.usersUrl}/${id}`);
+  }
+
   emailExists(email: string): Observable<boolean> {
     return this.http.get<User[]>(`${this.usersUrl}?email=${email}`).pipe(
       map(users => users.length > 0)
@@ -49,6 +53,19 @@ export class AccountService {
       }),
       switchMap(() => this.http.post<User>(this.usersUrl, user))
     );
+  }
+
+  /** Delete the current user
+   * @returns An observable that emits void
+   * @description This method will make a DELETE request to the server to delete the current user
+   */
+  deleteAccount(): Observable<void> {
+    const user = this.userSubject.value;
+    if (user) {
+      return this.http.delete<void>(`${this.usersUrl}/${user.id}`);
+    } else {
+      return throwError(() => new Error('No user is logged in'));
+    }
   }
 
   /** Login a user
@@ -114,4 +131,5 @@ export class AccountService {
   private loginError(error: HttpErrorResponse) {
     return throwError(() => new Error('Invalid email or password'));
   }
+
 }

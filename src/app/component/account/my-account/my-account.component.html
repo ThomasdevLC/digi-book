@@ -28,6 +28,10 @@
                   "
               value="{{ userData.email }}"
             />
+            <button type="button" (click)="onDelete()" class="bg-red-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">
+              Supprimer mon compte </button>
+            <app-confirmation-dialog *ngIf="showConfirmation" [message]="confirmationMessage" (confirm)="onConfirm()"
+                                     (cancel)="onCancel()"></app-confirmation-dialog>
           </div>
         </div>
 <!--        <div class="flex flex-col mb-5">-->
