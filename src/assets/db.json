@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "To Kill a Mockingbird!",
-      "author": "Harper Leee",
+      "author": "Harper Lee",
       "description": "A novel about the serious issues of rape and racial inequality.",
       "status": "available"
     },
@@ -69,6 +69,12 @@
       "id": "7823ed54",
       "username": "antoine",
       "email": "a@a.com",
+      "password": "123"
+    },
+    {
+      "id": "57ffe205",
+      "username": "zefzefz",
+      "email": "b@b.com",
       "password": "123"
     }
   ]

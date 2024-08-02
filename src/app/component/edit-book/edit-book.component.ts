@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {ConfirmationDialogComponent} from "../confirmation-dialog/confirmation-dialog.component";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-book',
@@ -23,7 +24,7 @@ export class EditBookComponent implements OnInit{
   confirmationType: 'edit' | 'delete' | null = null;
   confirmationMessage = '';
 
-  constructor(private bookService: BookService, private route: ActivatedRoute, protected router: Router) {
+  constructor(private bookService: BookService, private route: ActivatedRoute, protected router: Router,private notify:ToastrService) {
   }
 
   /** OnInit
@@ -53,7 +54,7 @@ export class EditBookComponent implements OnInit{
    * @description OnSubmit method
    */
   onSubmit(): void {
-    this.confirmationMessage = 'Etes vous certain de modifier ces informations ?';
+    this.confirmationMessage = 'Voulez vous vraiment modifier ces informations ?';
     this.confirmationType = 'edit';
     this.showConfirmation = true;
   }
@@ -64,6 +65,7 @@ export class EditBookComponent implements OnInit{
   onEditConfirm(): void {
     if (this.book) {
       this.bookService.updateData(this.book).subscribe(() => {
+        this.notify.success('Modification effectuée avec succès');
         this.router.navigate(['/books']).then();
       });
     }
@@ -81,7 +83,7 @@ export class EditBookComponent implements OnInit{
    * @description OnDelete method
    */
   onDelete(): void {
-    this.confirmationMessage = 'Etes vous certain de supprimer ce livre ?';
+    this.confirmationMessage = 'Voulez vous vraiment supprimer ce livre ?';
     this.confirmationType = 'delete';
     this.showConfirmation = true;
   }
@@ -92,6 +94,7 @@ export class EditBookComponent implements OnInit{
   onDeleteConfirm(): void {
     if (this.book) {
       this.bookService.removeBook(this.book.id).subscribe(() => {
+        this.notify.success('Suppression effectuée avec succès');
         this.router.navigate(['/books']).then();
       });
     }

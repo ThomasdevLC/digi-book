@@ -25,10 +25,4 @@ export class MyAccountComponent implements OnInit{
     });
   }
 
-  logout(): void {
-    this.accountService.logout();
-    this.router.navigate(['/']).then();
-  }
-
-
 }
