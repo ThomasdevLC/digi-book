@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { BookService, Book } from '../../service/book.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { computeMsgId } from '@angular/compiler';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-add-book',
@@ -12,9 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./add-book.component.css'],
 })
 export class AddBookComponent {
-
   newBook: Book = {
-    id: crypto.randomUUID(),
+    id: crypto.randomUUID().substring(0, 10),
     title: '',
     author: '',
     description: '',
@@ -42,6 +40,7 @@ export class AddBookComponent {
         console.log('Book added:', book);
 
         this.newBook = {
+          id: '',
           id: '',
           title: '',
           author: '',

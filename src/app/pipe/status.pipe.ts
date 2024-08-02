@@ -2,14 +2,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'status',
-  standalone: true
+  standalone: true,
 })
 export class StatusPipe implements PipeTransform {
-
   /** status ctor */
   transform(value: 'available' | 'borrowed'): string {
-    if(!value) return value;
+    if (!value) return value;
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
-
 }

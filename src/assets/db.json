@@ -3,9 +3,9 @@
     {
       "id": "1",
       "title": "To Kill a Mockingbird!",
-      "author": "Harper Leee",
+      "author": "Harper Lee",
       "description": "A novel about the serious issues of rape and racial inequality.",
-      "status": "available"
+      "status": "borrowed"
     },
     {
       "id": "2",
@@ -76,24 +76,6 @@
       "username": "fezfezf",
       "email": "info@digi.com",
       "password": "12345"
-    },
-    {
-      "id": "bc2dbb9a",
-      "username": "fzfezf",
-      "email": "fezfzef@gmail.com",
-      "password": "12336544"
-    },
-    {
-      "id": "09594c4b",
-      "username": "fezfezf",
-      "email": "zefzef@gmail.com",
-      "password": "12555"
-    },
-    {
-      "id": "fd4deaf0",
-      "username": "fzefezf",
-      "email": "picronantoine34@gmail.com",
-      "password": "fezfzefez"
     }
   ]
 }
