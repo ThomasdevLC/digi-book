@@ -46,7 +46,7 @@ export class AddBookComponent {
           description: '',
           status: 'available',
         };
-        this.router.navigate(['/books']);
+        this.router.navigate(['/books']).then();
       },
       error: (err) => {
         console.error('Error adding book:', err);
@@ -54,4 +54,5 @@ export class AddBookComponent {
       },
     });
   }
+
 }

@@ -33,7 +33,7 @@ export class BookService {
   }
 
   /**
-   * Get all books from the server
+   * Get a book by id
    * @param id The id of the todo to get
    * @returns An observable that emits the books
    */

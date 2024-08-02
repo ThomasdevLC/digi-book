@@ -5,9 +5,16 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class StatusPipe implements PipeTransform {
-  /** status ctor */
-  transform(value: 'available' | 'borrowed'): string {
-    if (!value) return value;
-    return value.charAt(0).toUpperCase() + value.slice(1);
+
+  transform(value: string): string {
+    switch (value) {
+      case 'available':
+        return 'disponible';
+      case 'borrowed':
+        return 'emprunté';
+      default:
+        return value;
+    }
   }
+
 }
