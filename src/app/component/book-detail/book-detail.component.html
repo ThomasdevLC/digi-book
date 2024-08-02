@@ -4,10 +4,11 @@
       <div class="max-w-md mx-auto">
         <div class="flex items-center space-x-5">
           <div
-            class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">
-            i
+            class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500  font-mono rotate-12">
+            <i class="fa-solid fa-book text-xl"></i>
+
           </div>
-          <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+          <div class="block pl-2 font-semibold text-xl  text-gray-700">
             <h2 class="leading-relaxed">Voir le détail d'un livre </h2>
           </div>
         </div>
@@ -16,38 +17,35 @@
             <div class="flex flex-col">
               <label class="leading-loose">Titre</label>
               <input type="text" disabled [value]="book.title" name="title"
-                     class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
             </div>
             <div class="flex flex-col">
               <label class="leading-loose">Auteur</label>
               <input type="text" disabled [value]="book.author" name="author"
-                     class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
             </div>
             <div class="flex flex-col">
               <label class="leading-loose"> Description</label>
               <textarea disabled [value]="book.description" name="description"
-                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"></textarea>
+                class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"></textarea>
             </div>
             <div class="flex items-center space-x-4">
               <div class="flex flex-col">
                 <label id="status" class="leading-loose">Status</label>
                 <div class="relative focus-within:text-gray-600 text-gray-400">
                   <input type="text" disabled [value]="book.status" name="status"
-                         class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                    class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                 </div>
               </div>
             </div>
             <div class="pt-4 flex items-center space-x-4">
               <button (click)="router.navigate(['/books'])"
-                      class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
-                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+                class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md hover:bg-yellow-200 focus:outline-none transition-colors duration-300">
+                <i class="fa-solid fa-arrow-rotate-left  text-yellow-500 mr-5"></i>
                 Retour
               </button>
               <button (click)="router.navigate(['/edit',book.id])"
-                      class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">
+                class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">
                 Modifier
               </button>
             </div>

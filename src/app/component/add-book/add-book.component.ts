@@ -38,7 +38,6 @@ export class AddBookComponent {
     this.bookService.addBook(this.newBook).subscribe({
       next: (book) => {
         console.log('Book added:', book);
-
         this.newBook = {
           id: '',
           title: '',
@@ -54,5 +53,4 @@ export class AddBookComponent {
       },
     });
   }
-
 }

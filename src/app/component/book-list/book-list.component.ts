@@ -41,9 +41,4 @@ export class BookListComponent implements OnInit {
   addBook(): void {
     this.router.navigate(['/add']);
   }
-
-  onBookSelected(book: Book): void {
-    console.log('Book selected:', book);
-    this.router.navigate(['/book-details', book.id]);
-  }
 }
