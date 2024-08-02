@@ -25,6 +25,10 @@ export class BookService {
    */
   constructor(private http: HttpClient) {}
 
+  /**
+   * Get all books
+   * @returns the books
+   */
   getBooks() {
     this.http.get<Book[]>(this.apiURL).subscribe({
       next: (books: Book[]) => this.booksSubject.next(books),
@@ -55,6 +59,12 @@ export class BookService {
       })
     );
   }
+
+  /**
+   * create and add a book to the server
+   * @param newBook The book to add
+   * @returns An observable that emits the books
+   */
 
   addBook(newBook: Book): Observable<Book> {
     return new Observable<Book>((observer) => {
