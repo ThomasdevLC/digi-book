@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterByStatusPipe } from '../../pipe/filter-by-status.pipe';
 import { StatusPipe } from '../../pipe/status.pipe';
 import { FilterByNamePipe } from '../../pipe/filter-by-name.pipe';
+import { BookItemComponent } from '../book-item/book-item.component';
 
 @Component({
   selector: 'app-book-list',
@@ -19,6 +20,7 @@ import { FilterByNamePipe } from '../../pipe/filter-by-name.pipe';
     FilterByStatusPipe,
     StatusPipe,
     FilterByNamePipe,
+    BookItemComponent,
   ],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css',
@@ -38,5 +40,10 @@ export class BookListComponent implements OnInit {
   }
   addBook(): void {
     this.router.navigate(['/add']);
+  }
+
+  onBookSelected(book: Book): void {
+    console.log('Book selected:', book);
+    this.router.navigate(['/book-details', book.id]);
   }
 }
