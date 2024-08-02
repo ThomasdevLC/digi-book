@@ -15,7 +15,6 @@ import {RouterLink} from "@angular/router";
 })
 export class BookItemComponent {
   @Input() book!: Book;
-
   @Output() bookSelected = new EventEmitter<Book>();
 
   onSelect() {

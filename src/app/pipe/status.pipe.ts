@@ -16,4 +16,5 @@ export class StatusPipe implements PipeTransform {
         return value;
     }
   }
+
 }
