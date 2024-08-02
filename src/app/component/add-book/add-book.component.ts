@@ -41,7 +41,6 @@ export class AddBookComponent {
 
         this.newBook = {
           id: '',
-          id: '',
           title: '',
           author: '',
           description: '',
